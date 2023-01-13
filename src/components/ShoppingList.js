@@ -4,7 +4,7 @@ import Filter from "./Filter";
 import Item from "./Item";
 
 function ShoppingList({ items, setItems }) {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState("Produce");
   const [filterMode, setFilterMode] = useState("C")
   const [searchString, setSearchString] = useState("")
 
@@ -43,7 +43,7 @@ function ShoppingList({ items, setItems }) {
   return (
     <div className="ShoppingList">
       <ItemForm onItemFormSubmit={addToShoppingList} />
-      <Filter onCategoryChange={handleCategoryChange} searchString={searchString} onFocusOn={handleFilterChange} onSearchChange={handleSearchChange} />
+      <Filter category={selectedCategory} onCategoryChange={handleCategoryChange} searchString={searchString} onFocusOn={handleFilterChange} onSearchChange={handleSearchChange} />
       <ul className="Items">
         {itemsToDisplay.map((item) => (
           <Item key={item.id} name={item.name} category={item.category} />
