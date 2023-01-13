@@ -1,12 +1,22 @@
 import React from "react";
 import { v4 as uuid } from "uuid";
 
-function ItemForm(props) {
+function ItemForm({onItemFormSubmit}) {
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    onItemFormSubmit({
+        id: uuid(),
+        name: e.target.name.value,
+        category: e.target.category.value
+      })
+  }
+
   return (
-    <form className="NewItem">
+    <form className="NewItem" onSubmit={handleSubmit}>
       <label>
         Name:
-        <input type="text" name="name" />
+        <input type="text" name="name" required/>
       </label>
 
       <label>
